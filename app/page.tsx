@@ -1,91 +1,128 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-import styles from './page.module.css'
-
-const inter = Inter({ subsets: ['latin'] })
+import { FAQS, HomeGalleryArray } from "@/Components/array_items";
+import { HomeGalleryImages } from "@/Components/gallery-image-components";
+import { Accordion, PrimaryBtn } from "@/Components/reuseable-components";
+import { motion } from "framer-motion";
+import Image from "next/image";
+import Link from "next/link";
+import h_002 from "../public/Img/hero-img.png";
 
 export default function Home() {
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <main className="">
+      {/* header */}
+      <section className="relative flex w-full flex-col items-center">
+        <div className="max-w-full">
+          <Image src={h_002} alt="igm" />
         </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-        <div className={styles.thirteen}>
-          <Image src="/thirteen.svg" alt="13" width={40} height={31} priority />
+        {/* section for img carosel and btn */}
+        <div className="absolute bottom-52">
+          <div className="bg- rounded px-4 py-2">
+            <h1 className="text-6xl text-white">Welcome</h1>
+          </div>
+          <div></div>
         </div>
+      </section>
+      {/* Ratecard */}
+      <section className="flex flex-col items-center py-10">
+        <div className="flex w-full max-w-7xl flex-col">
+          <div className="w-full p-4 text-center">
+            <h1 className="text-3xl font-black">
+              PORTRAIT / WEDDING & RETOUCHING STUDIOS
+            </h1>
+          </div>
+          <div className="flex flex-col p-4">
+            <div className=" md:relative">
+              <div className="">
+                <Image src={h_002} alt="igm" />
+              </div>
+              <div className=" flex md:absolute md:bottom-2 md:right-2 ">
+                <div className="flex max-w-xs flex-col justify-end space-y-4 bg-white p-4">
+                  <div>
+                    <h1 className="text-2xl font-black">OUR SERVICES</h1>
+                    <p className="text-base">
+                      {`
+                        We offer photography services, portrait,studio,
+                        outdoor,Family shoot etc. We also offer other creative
+                        services as add-on when booking
+                      `}
+                    </p>
+                  </div>
+                  <div>
+                    <h1 className="text-2xl font-black">CREATIVE PACKAGES</h1>
+                    <p className="text-base">
+                      {`
+                      Whilst we can create a bespoke package tailored to your
+                      photography needs, we've put together some basic packages
+                      which you can choose from.
+                      `}
+                    </p>
+                  </div>
+                  <div className="pt-4">
+                    <PrimaryBtn link={"/RateCard"} text="View Rate Card" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      {/* Gallery */}
+      <div>
+        <HomeGalleryImages />
       </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://beta.nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+      {/* About */}
+      <section className="hidden flex-col items-center">
+        <div className="flex w-full max-w-7xl flex-col">About</div>
+      </section>
+      {/* FAQs */}
+      <section
+        className="flex flex-col items-center scroll-smooth py-10"
+        id="FAQs"
+      >
+        <div className="flex w-full max-w-7xl flex-col px-4">
+          <div className="pb-4">
+            <h1 className="py-2 text-3xl font-black">
+              FREQUENTLY ASKED QUESTIONS(FAQs)
+            </h1>
+            <p className="capitalize">
+              Have Any Question Look Through Our Freequently asked questions
+              before you contact us.
+            </p>
+          </div>
+          <div>
+            <div>
+              {FAQS.map((FAQ) => (
+                <div key={FAQ.id}>
+                  <Accordion title={FAQ.questions} content={FAQ.answer} />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className="flex flex-col items-center">
+        <div className="flex w-full max-w-7xl flex-col px-2">
+          <div className="py-10">
+            <div className="relative">
+              <Image
+                src={h_002}
+                alt="hero_img"
+                className="h-80 w-full object-cover"
+              />
+              <div className="absolute bottom-2 w-full p-4">
+                <div className=" flex items-center justify-between">
+                  <div>
+                    <PrimaryBtn link={"/Gallery"} text="View Gallery" />
+                  </div>
+                  <div>
+                    <PrimaryBtn link={"/TermsAndConditions"} text="View T&C" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
-  )
+  );
 }
