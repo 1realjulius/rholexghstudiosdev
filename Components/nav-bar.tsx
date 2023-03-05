@@ -4,7 +4,6 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import NavMenu from "./nav-menu";
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
-import classNames from "classnames";
 import { ChevronDown } from "react-feather";
 
 export default function Navbar() {
